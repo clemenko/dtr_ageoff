@@ -4,10 +4,11 @@
 ###################################
 set -e
 
-dtr_server=$1
-age=$2
-password=Pa22word
-dryrun=no
+#set variables
+dtr_server=dtr.dockr.life
+age=180
+dryrun=yes
+username=admin
 
 
 ######  NO MOAR EDITS #######
@@ -20,6 +21,13 @@ date=
 #sudo -
 # be able to start within any repo
 #curl api | grep value for seeding the inital check
+
+
+function age_off (){
+#get password
+read -sp 'password: ' password;
+
+
 
 image_list=$(curl -skX GET -u admin:$password "https://dtr.dockr.life/api/v0/repositories/?pageSize=10&count=false" -H "accept: application/json" |jq -r '.repositories[] | "\(.namespace)/\(.name)"')
 
@@ -40,12 +48,20 @@ for i in $image_list; do
 
   done
 done
-
+}
 
 #date comparison
 
 
-case "$1" in
-        dryrun) dryrun;;
-        *) echo "Usage: $0 {dryrun}" URL ; exit 1
-esac
+while getopts ":ad" opt; do
+  case $opt in
+    d)
+      dryrun=yes
+      echo "dryrun : $dryrun" >&2 ;;
+    a)
+      echo $1 $2
+      echo "age : $age" >&2 ;;
+    ?)
+      echo "Usage: $0 -d (dryrun) -a (age in days) -h (this help) -url (DTR URL) -u username " >&2 ;;
+  esac
+done
