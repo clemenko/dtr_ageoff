@@ -3,19 +3,19 @@ dryrun=no
 
 while getopts ":da:url:user:" opt; do
   case $opt in
-    d)
+    d )
       dryrun=yes
       echo "dryrun : $dryrun" >&2 ;;
-    a)
+    a )
       age=$OPTARG
       echo "age : $age" >&2 ;;
-    url)
+    url )
       url=$OPTARG
       echo "url : $OPTARG" >&2 ;;
-    user)
+    user )
       username=$OPTARG
       echo "username : $OPTARG" >&2 ;;
-    \?)
+    \? )
       echo "Usage:"
       echo "  $0 -d             Dryrun"
       echo "  $0 -a             Age in Days"
