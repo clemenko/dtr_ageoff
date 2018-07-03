@@ -9,6 +9,18 @@ The purpose of this script is to scrape DTR for older images. The one caveat is 
 
 ## Install
 
+### Linux
+```
+apt update; apt install -y jq curl
+```
+
+or
+
+```
+yum install -y epel-release
+yum install -y curl jq
+```
+
 ### Mac
 ```
 brew install jq curl coreutils
