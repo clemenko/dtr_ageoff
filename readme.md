@@ -1,6 +1,6 @@
 # Dtr Age Off
 
-The purpose of this script is to scrape DTR for older images. The one caveat is that the repository must have Tag Immutability turned off. 
+The purpose of this script is to scrape DTR for older images. The one caveat is that the repository must have Tag Immutability turned
 
 ## Requirements
     - jq
@@ -10,11 +10,9 @@ The purpose of this script is to scrape DTR for older images. The one caveat is 
 ## Install
 
 ### Mac
-
 ```
 brew install jq curl coreutils
 ```
-
 
 ## Run
 Edit the script for the following variables:
