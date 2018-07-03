@@ -2,7 +2,7 @@
 
 The purpose of this script is to scrape DTR for older images. The one caveat is that the repository must have Tag Immutability turned off. 
 
-* Upcoming - I will work on a container version of this. 
+**Upcoming - I will work on a container version of this.**
 
 ## Requirements
     - jq
