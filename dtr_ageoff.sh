@@ -6,10 +6,10 @@
 set -e
 
 #set variables
-dtr_server=dtr.dockr.life
-age=90
-delete=no
-username=admin
+dtr_server=dtr.dockr.life #server url. https is implied. 
+age=90 #days
+delete=no #actaully delete the tags
+username=admin #must be an administrative username
 
 ######  NO MOAR EDITS #######
 RED=$(tput setaf 1)
@@ -31,7 +31,7 @@ echo " Checking for images older than "$RED$age$NORMAL" days."
 if [ "$delete" == "yes" ]; then 
   echo $RED"     -- DELETE FUNCTION IS ON --"$NORMAL
   echo $GREEN"      -- ctrl-c to break --  "$NORMAL
-  sleep 10
+  sleep 5
 fi 
 
 #get password
