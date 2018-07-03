@@ -1,5 +1,7 @@
 # Dtr Age Off
 
+The purpose of this script is to scrape DTR for older images. The one caveat is that the repository must have Tag Immutability turned off. 
+
 ## Requirements
     - jq
     - curl
@@ -17,7 +19,7 @@ brew install jq curl coreutils
 ## Run
 Edit the script for the following variables:
 
-- dtr_server=dtr.dockr.life #server url. https is implied. 
+- dtr_server=dtr.dockr.life #server url, https is implied. 
 - age=90 #days
 - delete=no #actaully delete the tags
 - username=admin #must be an administrative username
