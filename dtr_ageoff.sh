@@ -19,13 +19,19 @@ NORMAL=$(tput sgr0)
 if [ $(uname)  == "Darwin" ]; then date_app=gdate; fi
 if [ $(uname)  == "Linux" ]; then date_app=date; fi
 
+if [ ! -z "$DTR_SERVER" ]; then dtr_server=$DTR_SERVER; fi
+if [ ! -z "$AGE" ]; then age=$AGE; fi
+if [ ! -z "$DELETE" ]; then delete=$DELETE; fi
+if [ ! -z "$USERNAME" ]; then username=$USERNAME; fi
+
 age_date=$($date_app -d "$($date_app)-${age}days" '+%s')
 
 MANIFEST_HEADER='application/vnd.docker.distribution.manifest.list.v2+json,application/vnd.docker.distribution.manifest.v2+json,application/vnd.docker.plugin.v1+json'
 
 function age_off (){
+echo "------------------------------------------------------------------"
 echo " Welcome to the DTR Age Off Scanner."
-echo " Checking for images older than "$RED$age$NORMAL" days."
+echo " Checking: $GREEN$dtr_server$NORMAL as $GREEN$username$NORMAL for images older than "$RED$age$NORMAL" days."
 
 #delete warning
 if [ "$delete" == "yes" ]; then 
@@ -35,8 +41,9 @@ if [ "$delete" == "yes" ]; then
 fi 
 
 #get password
-read -sp ' password: ' password;
+read -sp ' password: ' password; 
 echo ""
+echo "------------------------------------------------------------------"
 
 #get image list
 image_list=$(curl -skX GET -u $username:$password "https://$dtr_server/api/v0/repositories/?pageSize=10000&count=false" -H "accept: application/json" |jq -r '.repositories[] | "\(.namespace)/\(.name)"')
@@ -78,6 +85,7 @@ for image in $image_list; do
     done 
   fi
 done
+echo "------------------------------------------------------------------"
 }
 
 age_off
